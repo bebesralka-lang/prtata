@@ -14,7 +14,7 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, #2b3a42 0%, #1a2529 40%, #0d0b0f 100%);
+            background: #ffc0cb;
             font-family: 'Georgia', 'Segoe UI', cursive;
             display: flex;
             flex-direction: column;
@@ -24,42 +24,9 @@
             position: relative;
         }
 
-        /* ===== СВЕЧИ (по бокам) ===== */
-        .candle-left, .candle-right {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3.5rem;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.7;
-            animation: flicker 1.8s infinite alternate ease-in-out;
-            filter: drop-shadow(0 0 30px rgba(255, 200, 100, 0.3));
-            user-select: none;
-        }
-        .candle-left { left: 15px; }
-        .candle-right { right: 15px; }
-        .candle-left .flame, .candle-right .flame {
-            display: inline-block;
-            animation: flickerFlame 0.6s infinite alternate ease-in-out;
-        }
-        @keyframes flicker {
-            0% { opacity: 0.6; transform: translateY(-50%) scale(1); }
-            100% { opacity: 1; transform: translateY(-50%) scale(1.05); }
-        }
-        @keyframes flickerFlame {
-            0% { transform: scale(1) rotate(-2deg); }
-            100% { transform: scale(1.1) rotate(2deg); }
-        }
-
-        @media (max-width: 700px) {
-            .candle-left, .candle-right { font-size: 2.2rem; }
-            .candle-left { left: 5px; }
-            .candle-right { right: 5px; }
-        }
-
-        /* ===== СТИКЕРЫ ===== */
-        .floaters-up, .floaters-down {
+        /* ===== СТИКЕРЫ (РОЗОВЫЕ ЦВЕТЫ) ===== */
+        .floaters-up,
+        .floaters-down {
             position: fixed;
             top: 0;
             left: 0;
@@ -71,26 +38,37 @@
         }
         .floater-up {
             position: absolute;
-            font-size: 28px;
+            font-size: 26px;
             animation: floatUpRotate linear forwards;
             user-select: none;
-            opacity: 0.6;
-            text-shadow: 0 0 20px rgba(179, 190, 192, 0.3);
+            opacity: 0.7;
         }
         @keyframes floatUpRotate {
-            0% { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0.7; }
-            100% { transform: translateY(-10vh) rotate(720deg) scale(1.3); opacity: 0; }
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.6);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(720deg) scale(1.2);
+                opacity: 0;
+            }
         }
         .floater-down {
             position: absolute;
             font-size: 22px;
             animation: fallRotate linear forwards;
             user-select: none;
-            opacity: 0.5;
+            opacity: 0.6;
         }
         @keyframes fallRotate {
-            0% { transform: translateY(-10vh) rotate(0deg) scale(0.8); opacity: 0.6; }
-            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0.8);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+                opacity: 0;
+            }
         }
 
         /* ===== ЭКРАН ВХОДА ===== */
@@ -100,7 +78,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(13, 11, 15, 0.95);
+            background: rgba(255, 192, 203, 0.98);
             backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
@@ -115,13 +93,13 @@
             pointer-events: none;
         }
         #entryScreen h1 {
-            color: #b3bec0;
+            color: #4a2a3a;
             font-size: 2.8rem;
             margin-bottom: 10px;
             font-family: 'Georgia', serif;
         }
         #entryScreen .sub {
-            color: #8f9ba4;
+            color: #6d4a5a;
             font-size: 1.2rem;
             margin-bottom: 30px;
             font-style: italic;
@@ -132,7 +110,9 @@
             gap: 40px;
             flex-wrap: wrap;
             position: relative;
-            min-height: 100px;
+            min-height: 120px;
+            width: 100%;
+            max-width: 500px;
         }
         .entry-game button {
             padding: 16px 50px;
@@ -147,19 +127,19 @@
             z-index: 10;
         }
         #entryYes {
-            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+            background: linear-gradient(135deg, #ff9baa, #f48fb1);
             color: #fff;
-            box-shadow: 0 6px 30px rgba(244, 143, 177, 0.4);
+            box-shadow: 0 6px 30px rgba(255, 155, 170, 0.5);
         }
         #entryNo {
-            background: #5c6b74;
-            color: #0d0b0f;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            background: #d4a0b0;
+            color: #4a2a3a;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
         }
         #entryMessage {
             margin-top: 25px;
             font-size: 1.4rem;
-            color: #e8edee;
+            color: #4a2a3a;
             min-height: 50px;
             font-family: 'Georgia', serif;
             opacity: 0;
@@ -192,35 +172,30 @@
             background: #ffc0cb;
             border-radius: 30px;
             padding: 25px 22px 30px;
-            box-shadow: 
-                0 0 15px rgba(255, 155, 170, 0.3),
-                inset 0 0 30px rgba(255, 155, 170, 0.05);
+            box-shadow: 0 0 20px rgba(255, 155, 170, 0.2);
             border: 2px solid #ff9baa;
             transition: box-shadow 0.3s ease;
             position: relative;
         }
         .neon-block:hover {
-            box-shadow: 
-                0 0 30px rgba(255, 155, 170, 0.5),
-                inset 0 0 30px rgba(255, 155, 170, 0.05);
+            box-shadow: 0 0 40px rgba(255, 155, 170, 0.3);
         }
 
-        /* ===== НЕОНОВАЯ ВЫВЕСКА (заголовок блока) ===== */
+        /* ===== НЕОНОВАЯ ВЫВЕСКА (белая со свечением) ===== */
         .neon-sign {
             font-family: 'Georgia', serif;
             font-size: 2.2rem;
             font-weight: bold;
-            color: #ff9baa;
-            text-shadow: 
-                0 0 10px #ff9baa,
-                0 0 20px #ff9baa,
-                0 0 40px #ff9baa,
-                0 0 80px rgba(255, 155, 170, 0.3);
+            color: #ffffff;
+            text-shadow:
+                0 0 7px #ffffff,
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(255, 255, 255, 0.3);
             text-align: center;
             letter-spacing: 6px;
             margin-bottom: 15px;
             padding: 8px 0;
-            border-bottom: 2px solid rgba(255, 155, 170, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
         }
         .neon-sign small {
             font-size: 1rem;
@@ -229,6 +204,106 @@
             display: block;
             font-weight: normal;
             margin-top: 4px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== БЛОК "НАШИ МОМЕНТЫ" (бархатная ленточка) ===== */
+        .velvet-block {
+            background: #ffc0cb;
+            border-radius: 30px;
+            padding: 25px 22px 30px;
+            position: relative;
+            border: 3px solid #e8a0b0;
+            box-shadow: 0 0 20px rgba(255, 155, 170, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+        .velvet-block:hover {
+            box-shadow: 0 0 40px rgba(255, 155, 170, 0.25);
+        }
+        /* Бантики по углам */
+        .velvet-block::before,
+        .velvet-block::after {
+            content: '🎀';
+            position: absolute;
+            font-size: 2.2rem;
+            opacity: 0.7;
+        }
+        .velvet-block::before {
+            top: -12px;
+            left: -8px;
+            transform: rotate(-15deg);
+        }
+        .velvet-block::after {
+            bottom: -12px;
+            right: -8px;
+            transform: rotate(160deg);
+        }
+        .velvet-bow-top-right {
+            position: absolute;
+            top: -12px;
+            right: -8px;
+            font-size: 2.2rem;
+            transform: rotate(70deg);
+            opacity: 0.7;
+        }
+        .velvet-bow-bottom-left {
+            position: absolute;
+            bottom: -12px;
+            left: -8px;
+            font-size: 2.2rem;
+            transform: rotate(-140deg);
+            opacity: 0.7;
+        }
+
+        /* ===== БЛОК "ОБЛАКО СЛОВ" (белая бархатная ленточка) ===== */
+        .white-velvet-block {
+            background: #ffc0cb;
+            border-radius: 30px;
+            padding: 25px 22px 30px;
+            position: relative;
+            border: 3px solid #f0d0d8;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .white-velvet-block:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+        }
+        .white-velvet-block::before,
+        .white-velvet-block::after {
+            content: '🎀';
+            position: absolute;
+            font-size: 2.2rem;
+            opacity: 0.5;
+            filter: grayscale(0.5);
+        }
+        .white-velvet-block::before {
+            top: -12px;
+            left: -8px;
+            transform: rotate(-15deg);
+        }
+        .white-velvet-block::after {
+            bottom: -12px;
+            right: -8px;
+            transform: rotate(160deg);
+        }
+        .white-bow-top-right {
+            position: absolute;
+            top: -12px;
+            right: -8px;
+            font-size: 2.2rem;
+            transform: rotate(70deg);
+            opacity: 0.5;
+            filter: grayscale(0.5);
+        }
+        .white-bow-bottom-left {
+            position: absolute;
+            bottom: -12px;
+            left: -8px;
+            font-size: 2.2rem;
+            transform: rotate(-140deg);
+            opacity: 0.5;
+            filter: grayscale(0.5);
         }
 
         /* ===== ЗАГОЛОВКИ ВНУТРИ ===== */
@@ -260,7 +335,7 @@
             50% { border-color: transparent; }
         }
 
-        /* ===== СЧЁТЧИК ПОЦЕЛУЕВ (с цветочками) ===== */
+        /* ===== СЧЁТЧИК ПОЦЕЛУЕВ ===== */
         .kiss-counter {
             display: flex;
             align-items: center;
@@ -316,7 +391,7 @@
             margin: 0 auto;
             overflow: hidden;
             border-radius: 24px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
         }
         .carousel-slides {
             display: flex;
@@ -333,7 +408,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 155, 170, 0.3);
             color: #4a2a3a;
@@ -346,7 +421,7 @@
             font-family: 'Georgia', serif;
         }
         .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
         }
         .carousel-btn.prev { left: 10px; }
         .carousel-btn.next { right: 10px; }
@@ -364,7 +439,7 @@
             border-radius: 24px;
             overflow: hidden;
             border: 2px solid rgba(255, 155, 170, 0.2);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
         .map-container iframe {
             width: 100%;
@@ -476,20 +551,32 @@
         .date-item .d { font-weight: bold; color: #2b0d15; font-size: 1.05rem; }
         .date-item .desc { font-size: 0.85rem; opacity: 0.6; margin-top: 2px; }
 
-        /* ===== БАНОЧКА ВОСПОМИНАНИЙ ===== */
-        .memory-box {
+        /* ===== БАНОЧКА ВОСПОМИНАНИЙ (отдельный блок) ===== */
+        .memory-block {
+            background: #ffc0cb;
+            border-radius: 30px;
+            padding: 25px 22px 30px;
+            border: 2px solid #ff9baa;
+            box-shadow: 0 0 20px rgba(255, 155, 170, 0.15);
+            transition: box-shadow 0.3s ease;
             margin-top: 15px;
+        }
+        .memory-block:hover {
+            box-shadow: 0 0 40px rgba(255, 155, 170, 0.25);
+        }
+        .memory-box {
             padding: 18px;
             background: rgba(255, 155, 170, 0.08);
             border-radius: 24px;
             border: 2px dashed rgba(255, 155, 170, 0.2);
             color: #3d1f2a;
             font-family: 'Georgia', serif;
-            min-height: 70px;
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
         }
         .memory-box .memory-text {
             font-size: 1.1rem;
@@ -497,22 +584,34 @@
             margin: 6px 0;
             color: #2b0d15;
         }
+        .memory-box .memory-photo {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 16px;
+            margin: 8px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: none;
+        }
+        .memory-box .memory-photo.show {
+            display: block;
+        }
         .memory-btn {
             background: #ff9baa;
             border: none;
-            padding: 8px 25px;
+            padding: 10px 30px;
             border-radius: 30px;
             color: #fff;
             font-weight: bold;
             cursor: pointer;
             font-family: 'Georgia', serif;
             transition: 0.3s;
-            margin-top: 6px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255, 155, 170, 0.2);
+            margin-top: 8px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(255, 155, 170, 0.3);
         }
         .memory-btn:hover {
             background: #f48fb1;
+            transform: scale(1.03);
         }
 
         /* ===== ОБЛАКО СЛОВ ===== */
@@ -525,13 +624,21 @@
         }
         .cloud-word {
             font-family: 'Georgia', serif;
-            color: #3d1f2a;
-            transition: 0.3s;
-            cursor: default;
+            color: #4a2a3a;
+            transition: all 0.3s ease;
+            cursor: pointer;
             padding: 2px 4px;
+            border-radius: 8px;
+            user-select: none;
+        }
+        .cloud-word.active {
+            color: #ffffff;
+            text-shadow:
+                0 0 7px #ffffff,
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(255, 255, 255, 0.3);
         }
         .cloud-word:hover {
-            color: #ff9baa;
             transform: scale(1.1);
         }
 
@@ -605,17 +712,16 @@
             .entry-game button { padding: 12px 30px; font-size: 1.1rem; }
             #typewriter { font-size: 1.1rem; }
             .neon-block { padding: 18px 14px 22px; }
+            .velvet-block { padding: 18px 14px 22px; }
+            .white-velvet-block { padding: 18px 14px 22px; }
+            .memory-block { padding: 18px 14px 22px; }
             .kiss-counter button { padding: 10px 25px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== СВЕЧИ ===== -->
-    <div class="candle-left">🕯️<span class="flame">🔥</span></div>
-    <div class="candle-right">🕯️<span class="flame">🔥</span></div>
-
-    <!-- ===== СТИКЕРЫ ===== -->
+    <!-- ===== СТИКЕРЫ (РОЗОВЫЕ ЦВЕТЫ) ===== -->
     <div class="floaters-up" id="floatersUp"></div>
     <div class="floaters-down" id="floatersDown"></div>
 
@@ -662,9 +768,11 @@
             </div>
         </div>
 
-        <!-- ===== БЛОК 2: НАШИ МОМЕНТЫ ===== -->
-        <div class="neon-block">
-            <div class="neon-sign" style="font-size:1.8rem;">
+        <!-- ===== БЛОК 2: НАШИ МОМЕНТЫ (бархатная ленточка) ===== -->
+        <div class="velvet-block">
+            <span class="velvet-bow-top-right">🎀</span>
+            <span class="velvet-bow-bottom-left">🎀</span>
+            <div class="neon-sign" style="font-size:1.8rem; border-bottom-color: rgba(255,255,255,0.1);">
                 📸 наши моменты
             </div>
 
@@ -681,14 +789,14 @@
 
             <!-- Стикер-дождь -->
             <div style="margin-top: 15px;">
-                <div style="color:#4a2a3a; font-size:0.9rem; margin-bottom:8px; opacity:0.6;">🌧️ нажми на поле — пойдёт дождь из 🤍</div>
+                <div style="color:#4a2a3a; font-size:0.9rem; margin-bottom:8px; opacity:0.6;">🌧️ нажми на поле — пойдёт дождь из 🌸</div>
                 <div id="rainArea">
-                    <div class="rain-hint">🌧️</div>
+                    <div class="rain-hint">🌸</div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== БЛОК 3: НАШ ПЛЕЙЛИСТ + БАНОЧКА ===== -->
+        <!-- ===== БЛОК 3: НАШ ПЛЕЙЛИСТ ===== -->
         <div class="neon-block">
             <div class="neon-sign" style="font-size:1.8rem;">
                 🎵 наш плейлист
@@ -710,11 +818,14 @@
             </div>
             <button class="play-all-btn" id="playAllBtn">▶️ Включить всё подряд</button>
 
-            <!-- Баночка воспоминаний -->
-            <div style="margin-top: 20px;">
-                <div class="section-title" style="font-size:1.1rem;"><span class="icon">🏺</span>Баночка воспоминаний</div>
+            <!-- Баночка воспоминаний (отдельный блок) -->
+            <div class="memory-block">
+                <div class="neon-sign" style="font-size:1.5rem; border-bottom-color: rgba(255,255,255,0.1);">
+                    🏺 Баночка воспоминаний
+                </div>
                 <div class="memory-box">
                     <div class="memory-text" id="memoryText">Нажми «Достать воспоминание» ✨</div>
+                    <img class="memory-photo" id="memoryPhoto" src="" alt="Воспоминание">
                     <button class="memory-btn" id="memoryBtn">📦 Достать воспоминание</button>
                 </div>
             </div>
@@ -729,7 +840,7 @@
             <!-- Карта + фото -->
             <div class="map-photo-wrapper">
                 <div class="map-container">
-                    <iframe 
+                    <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.123456789!2d44.7792!3d48.7867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4114e8f4e8f4e8f1%3A0x1234567890abcdef!2z0J_QsNGA0Log0J7Qs9C-0LvRjNC90YvQuSwg0JLQvtC70LbRgdC60LjQuSDRgNCw0LnQvtC9!5e0!3m2!1sru!2sru!4v1234567890"
                         allowfullscreen=""
                         loading="lazy"
@@ -769,27 +880,31 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Облако слов -->
-            <div style="margin-top: 20px;">
-                <div class="section-title" style="font-size:1.1rem;"><span class="icon">☁️</span>Облако слов</div>
-                <div class="cloud-container">
-                    <span class="cloud-word" style="font-size:2rem; color:#2b0d15;">любовь</span>
-                    <span class="cloud-word" style="font-size:1.6rem;">нежность</span>
-                    <span class="cloud-word" style="font-size:2.2rem; color:#2b0d15;">ты</span>
-                    <span class="cloud-word" style="font-size:1.4rem;">счастье</span>
-                    <span class="cloud-word" style="font-size:1.9rem;">я</span>
-                    <span class="cloud-word" style="font-size:1.3rem;">вечность</span>
-                    <span class="cloud-word" style="font-size:2.4rem; color:#2b0d15;">мы</span>
-                    <span class="cloud-word" style="font-size:1.5rem;">доверие</span>
-                    <span class="cloud-word" style="font-size:1.8rem;">тепло</span>
-                    <span class="cloud-word" style="font-size:1.2rem;">вдохновение</span>
-                    <span class="cloud-word" style="font-size:2rem; color:#2b0d15;">семья</span>
-                    <span class="cloud-word" style="font-size:1.4rem;">романтика</span>
-                    <span class="cloud-word" style="font-size:1.7rem;">уют</span>
-                    <span class="cloud-word" style="font-size:1.3rem;">забота</span>
-                    <span class="cloud-word" style="font-size:2.1rem; color:#2b0d15;">дом</span>
-                </div>
+        <!-- ===== БЛОК 5: ОБЛАКО СЛОВ (белая бархатная ленточка) ===== -->
+        <div class="white-velvet-block">
+            <span class="white-bow-top-right">🎀</span>
+            <span class="white-bow-bottom-left">🎀</span>
+            <div class="neon-sign" style="font-size:1.8rem; border-bottom-color: rgba(255,255,255,0.1);">
+                ☁️ облако слов
+            </div>
+            <div class="cloud-container" id="cloudContainer">
+                <span class="cloud-word" style="font-size:2rem;" data-active="false">любовь</span>
+                <span class="cloud-word" style="font-size:1.6rem;" data-active="false">нежность</span>
+                <span class="cloud-word" style="font-size:2.2rem;" data-active="false">ты</span>
+                <span class="cloud-word" style="font-size:1.4rem;" data-active="false">счастье</span>
+                <span class="cloud-word" style="font-size:1.9rem;" data-active="false">я</span>
+                <span class="cloud-word" style="font-size:1.3rem;" data-active="false">вечность</span>
+                <span class="cloud-word" style="font-size:2.4rem;" data-active="false">мы</span>
+                <span class="cloud-word" style="font-size:1.5rem;" data-active="false">доверие</span>
+                <span class="cloud-word" style="font-size:1.8rem;" data-active="false">тепло</span>
+                <span class="cloud-word" style="font-size:1.2rem;" data-active="false">вдохновение</span>
+                <span class="cloud-word" style="font-size:2rem;" data-active="false">семья</span>
+                <span class="cloud-word" style="font-size:1.4rem;" data-active="false">романтика</span>
+                <span class="cloud-word" style="font-size:1.7rem;" data-active="false">уют</span>
+                <span class="cloud-word" style="font-size:1.3rem;" data-active="false">забота</span>
+                <span class="cloud-word" style="font-size:2.1rem;" data-active="false">дом</span>
             </div>
         </div>
 
@@ -804,14 +919,14 @@
     <!-- ===== СКРИПТЫ ===== -->
     <!-- ============================================================ -->
     <script>
-        // ======= 0. СТИКЕРЫ (фон) =======
+        // ======= 0. СТИКЕРЫ (РОЗОВЫЕ ЦВЕТЫ) =======
         const floatersUp = document.getElementById('floatersUp');
-        const stickers = ['🤍', '⚪', '◻️', '▫️', '⬜'];
+        const flowers = ['🌸', '🌺', '🌷', '🌹', '💮', '🌼'];
 
         function createFloaterUp() {
             const el = document.createElement('div');
             el.className = 'floater-up';
-            el.textContent = stickers[Math.floor(Math.random() * stickers.length)];
+            el.textContent = flowers[Math.floor(Math.random() * flowers.length)];
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (Math.random() * 20 + 18) + 'px';
             el.style.animationDuration = (Math.random() * 10 + 8) + 's';
@@ -825,10 +940,11 @@
         setInterval(createFloaterUp, 800);
 
         const floatersDown = document.getElementById('floatersDown');
+
         function createFloaterDown() {
             const el = document.createElement('div');
             el.className = 'floater-down';
-            el.textContent = stickers[Math.floor(Math.random() * stickers.length)];
+            el.textContent = flowers[Math.floor(Math.random() * flowers.length)];
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (Math.random() * 18 + 14) + 'px';
             el.style.animationDuration = (Math.random() * 4 + 4) + 's';
@@ -841,7 +957,7 @@
         }
         setInterval(createFloaterDown, 1200);
 
-        // ======= 1. ЭКРАН ВХОДА =======
+        // ======= 1. ЭКРАН ВХОДА (ИСПРАВЛЕН) =======
         const entryYes = document.getElementById('entryYes');
         const entryNo = document.getElementById('entryNo');
         const entryMessage = document.getElementById('entryMessage');
@@ -851,12 +967,13 @@
         let entryAttempts = 0;
         let gameWon = false;
 
-        entryYes.addEventListener('mouseenter', function() {
+        entryYes.addEventListener('mouseenter', function(e) {
             if (gameWon) return;
             const container = document.getElementById('entryGame');
             const rect = container.getBoundingClientRect();
             const btnW = this.offsetWidth;
             const btnH = this.offsetHeight;
+            // Используем координаты мыши, чтобы кнопка двигалась
             const maxX = rect.width - btnW - 20;
             const maxY = rect.height - btnH - 20;
             if (maxX < 0 || maxY < 0) return;
@@ -865,7 +982,9 @@
             this.style.top = Math.random() * maxY + 'px';
             entryAttempts++;
 
-            const noTexts = ['😤 Нет', '😡 Ну нет!', '😤 Не сдамся!', '🤨 А вот и нет!', '😠 Нет!!!', '😤 Не дождёшься!', '😡 Неееет!', '🤔 Может быть...'];
+            const noTexts = ['😤 Нет', '😡 Ну нет!', '😤 Не сдамся!', '🤨 А вот и нет!', '😠 Нет!!!', '😤 Не дождёшься!', '😡 Неееет!',
+                '🤔 Может быть...'
+            ];
             if (entryAttempts < noTexts.length) {
                 entryNo.textContent = noTexts[entryAttempts];
             }
@@ -876,7 +995,7 @@
                 this.style.left = 'auto';
                 this.style.top = 'auto';
                 this.textContent = '💕 Ну ладно, ДА!';
-                this.style.background = 'linear-gradient(135deg, #f8bbd0, #ec407a)';
+                this.style.background = 'linear-gradient(135deg, #ff9baa, #ec407a)';
                 this.style.transform = 'scale(1.2)';
                 entryMessage.textContent = '💕 Я ТЕБЯ ТОЖЕ ЛЮБЛЮ!!! 💕';
                 entryMessage.classList.add('show');
@@ -1007,6 +1126,7 @@
                 currentAudio = null;
                 document.querySelectorAll('.play-btn').forEach(b => b.textContent = '▶️');
             }
+
             function playNext() {
                 if (index >= songs.length) { index = 0; }
                 const audio = new Audio(songs[index]);
@@ -1026,24 +1146,42 @@
             playNext();
         });
 
-        // ======= 7. БАНОЧКА ВОСПОМИНАНИЙ =======
-        const memories = [
-            '✨ Тот день, когда мы впервые увиделись — 16 октября 2023',
-            '💕 Наша первая прогулка под звёздами',
-            '🌸 Ты подарил мне цветы, и я поняла, что влюблена',
-            '🎡 Наш день в парке аттракционов — 29 июля 2026',
-            '🌙 Тот вечер, когда мы говорили до утра',
-            '💋 Наш первый поцелуй — 14 июня 2026',
-            '☀️ Твоя улыбка, которая согревает меня каждый день'
-        ];
+        // ======= 7. БАНОЧКА ВОСПОМИНАНИЙ (с фото) =======
+        const memories = [{
+            text: '✨ Тот день, когда мы впервые увиделись — 16 октября 2023',
+            photo: 'photo1.jpg'
+        }, {
+            text: '💕 Наша первая прогулка под звёздами',
+            photo: 'photo2.jpg'
+        }, {
+            text: '🌸 Ты подарил мне цветы, и я поняла, что влюблена',
+            photo: 'photo3.jpg'
+        }, {
+            text: '🎡 Наш день в парке аттракционов — 29 июля 2026',
+            photo: 'photo1.jpg'
+        }, {
+            text: '🌙 Тот вечер, когда мы говорили до утра',
+            photo: 'photo2.jpg'
+        }, {
+            text: '💋 Наш первый поцелуй — 14 июня 2026',
+            photo: 'photo3.jpg'
+        }, {
+            text: '☀️ Твоя улыбка, которая согревает меня каждый день',
+            photo: 'photo1.jpg'
+        }];
+
         document.getElementById('memoryBtn').addEventListener('click', function() {
-            const text = memories[Math.floor(Math.random() * memories.length)];
-            document.getElementById('memoryText').textContent = text;
+            const memory = memories[Math.floor(Math.random() * memories.length)];
+            document.getElementById('memoryText').textContent = memory.text;
+            const photoEl = document.getElementById('memoryPhoto');
+            photoEl.src = memory.photo;
+            photoEl.classList.add('show');
+            photoEl.style.display = 'block';
         });
 
-        // ======= 8. СТИКЕР-ДОЖДЬ =======
+        // ======= 8. СТИКЕР-ДОЖДЬ (РОЗОВЫЕ ЦВЕТЫ) =======
         const rainArea = document.getElementById('rainArea');
-        const rainStickers = ['🤍', '⚪', '◻️', '▫️', '⬜'];
+        const rainFlowers = ['🌸', '🌺', '🌷', '🌹', '💮', '🌼'];
 
         rainArea.addEventListener('click', function(e) {
             const rect = this.getBoundingClientRect();
@@ -1051,7 +1189,7 @@
             const y = e.clientY - rect.top;
             for (let i = 0; i < 14; i++) {
                 const el = document.createElement('div');
-                el.textContent = rainStickers[Math.floor(Math.random() * rainStickers.length)];
+                el.textContent = rainFlowers[Math.floor(Math.random() * rainFlowers.length)];
                 el.style.position = 'absolute';
                 el.style.left = (x + (Math.random() - 0.5) * 140) + 'px';
                 el.style.top = (y + (Math.random() - 0.5) * 100) + 'px';
@@ -1065,9 +1203,20 @@
             }
         });
 
-        // ======= 9. ФОТО В БЛОКЕ КАРТЫ =======
-        // Показываем фото (оно уже загружено через img src="photo1.jpg")
-        // Если нужно заменить на другое фото, просто поменяй photo1.jpg на нужное
+        // ======= 9. ОБЛАКО СЛОВ (при клике становятся белыми и неоновыми) =======
+        document.querySelectorAll('.cloud-word').forEach(word => {
+            word.addEventListener('click', function() {
+                const isActive = this.dataset.active === 'true';
+                if (isActive) {
+                    this.dataset.active = 'false';
+                    this.classList.remove('active');
+                } else {
+                    this.dataset.active = 'true';
+                    this.classList.add('active');
+                }
+            });
+        });
+
         console.log('💕 Сайт любви готов!');
     </script>
 </body>
